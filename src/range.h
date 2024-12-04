@@ -133,7 +133,7 @@ bool clampedVector2(sf::Vector2f vec, rangeTwoD a)
     return a.x.contains(vec.x) && a.y.contains(vec.y);
 }
 
-sf::Vector2f clampVector2(sf::Vector2f& vec, rangeTwoD a)
+sf::Vector2f clampVector2(sf::Vector2f vec, rangeTwoD a)
 {
     vec.x = a.x.clampNum(vec.x);
     vec.y = a.y.clampNum(vec.y);
