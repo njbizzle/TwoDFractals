@@ -165,7 +165,18 @@ void setupText(sf::Text& text, std::string content, float intensity, sf::Font& f
 void setTextPos(sf::Text& text, sf::Vector2f posWorld, Eigen::Matrix3f &viewToPixel, rangeTwoD pixels)
 {
     sf::Vector2f posScreen = transformPoint(viewToPixel, posWorld);
-    clampVector2(posScreen, pixels);
+    posScreen = clampVector2(posScreen, pixels);
+    // sfml has some really strange text, these are just estimations, im not very happy with it
+    sf::Vector2f h = sf::Vector2f(0, text.getCharacterSize()/2 + text.getLocalBounds().height);
+    sf::Vector2f w = sf::Vector2f(text.getCharacterSize()/2 + text.getLocalBounds().width, 0);
+    if (!clampedVector2(posScreen + h, pixels))
+    {
+        posScreen = clampVector2((posScreen + h), pixels) - h;
+    };
+    if (!clampedVector2(posScreen + w, pixels))
+    {
+        posScreen = clampVector2((posScreen + w), pixels) - w;
+    }
     text.setPosition(posScreen);
 }
 std::string numToString(float num, int exponent)
@@ -207,10 +218,8 @@ void populateNumberText(std::vector<sf::Text>& numberText, GridInfo& info, Eigen
     // n is out of use
     for (int n = 0; i < info.xGrid.count; i++)
     {
-        if (x == 0)
-        {
-            gridIntensity = 1;
-        }
+        if (abs(x) < 1e-5) // this prevents stuff like 0.0 or -0.0
+            {x = 0;}
         setupText(numberText.at(i), numToString(x, info.xGrid.exponent), gridIntensity, font);
         setTextPos(numberText.at(i), sf::Vector2f(x,0), viewToPixel, pixels);
         x += info.xGrid.spacing;
@@ -218,7 +227,7 @@ void populateNumberText(std::vector<sf::Text>& numberText, GridInfo& info, Eigen
     for (int n = 0; i < info.yGrid.count + info.xGrid.count; i++)
     {
         // dont repeat it
-        if (y == 0)
+        if (abs(y) < 1e-5)
         {
             y += info.yGrid.spacing;
             continue;
