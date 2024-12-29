@@ -1,4 +1,7 @@
 # Fractal Project (The Logistic Map)
+
+#### A program that uses SFML to make a graphing tool, which is used visualize logistic map.
+
 ## Overview
 
 I stumbled across the logistic map and James Gleick's _Chaos_ online, and the first time I saw the math behind the logistic map I knew I had to try and recreate it for myself. I found it really interesting how simple the rules were and how the logistic map seemed to be behind so many other chaotic patterns. For this project I knew I'd need to make use of a graphics framework, and since I was trying to challenge myself to make use of C++ more, I decided to go with an SFML project (Simple Fast Multimedia Library), which is relatively easy to use compared to other options. Most of the challenge in this project ended up being in creating a space to display the points I wanted to, managing pixel spaces, world spaces, rendering only what I need, and the grid lines.
