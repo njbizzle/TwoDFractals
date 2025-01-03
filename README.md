@@ -25,6 +25,5 @@ I also made use of the Eigen library for linear algebra.
 The title implies a project that's more general than just the logistic map, and I do have plans to expand it, but I don't think I'll continue from this repository. I started running into performance issues, which I'd need to address by learning more involved techniques for displaying things. Feeding SFML 10,000 points and letting it figure it out isn't super fast. I'd need to do a lot more learning in a framework like SFML and start to mold the project to whatever framework I'm using. Longer term I'd like to be building more projects inside of Vulkan, so if I were to dedicate the time to learning a framework, that's what I'd prefer to be using. Once I get more comfortable within Vulkan this project might see a much faster sequel with some better fractal renders.
 
 # Screenshots
-
-<img src="screenshots/1.5.png" alt="Alt Text" width="1000" height="1000">
-<img src="screenshots/10.png" alt="Alt Text" width="1000" height="1000">
+![](screenshots/1.5.png)
+![](screenshots/10.png)

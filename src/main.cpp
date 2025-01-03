@@ -24,7 +24,7 @@ int getNumVerticies(rangeTwoD viewRange_,  int xSteps)
     int numVerticies = 0;
     for (int xStepNum = 0; xStepNum < xStepRange.max; xStepNum++)
     {
-        numVerticies += getStableValues(xStepRange.mapTo(viewRange_.x, xStepNum), viewRange_.y, MAX_ITERATIONS, MAX_SPLITS).size();
+        numVerticies += logisticMapEstimVerticies(xStepRange.mapTo(viewRange_.x, xStepNum), viewRange_.y, MAX_ITERATIONS, MAX_SPLITS);
     }
     return numVerticies;
 }
@@ -34,7 +34,6 @@ void populateVeticies(sf::VertexArray& vertices, rangeTwoD viewRange_, int xStep
 {
     int vertIndex = 0;
     int vertCount = vertices.getVertexCount();
-    // std::clog << vertCount << " " << getNumVerticies(xRange, pixelRange.x) << std::endl;
 
     range xStepRange(0,xSteps);
 
@@ -43,14 +42,12 @@ void populateVeticies(sf::VertexArray& vertices, rangeTwoD viewRange_, int xStep
         float x = xStepRange.mapTo(viewRange_.x, xPix);
 
 
-        std::vector<float> stableValues = getStableValues(x, viewRange_.y, MAX_ITERATIONS, MAX_SPLITS);
+        std::vector<float> yCoords = logisticMapStableValues(x, viewRange_.y, MAX_ITERATIONS, MAX_SPLITS);
 
-        for (float value : stableValues)
+        for (float yCoord : yCoords)
         {
-            sf::Vector2 vec = sf::Vector2f(x, value);
+            sf::Vector2 vec = sf::Vector2f(x, yCoord);
             vertices[vertIndex].position = vec;
-
-            // vertices[vertIndex].position = sf::Vector2f(xRange.mapTo(pixelRange.x, x), yRange.mapTo(pixelRange.y, value));
             vertices[vertIndex].color = sf::Color(255,0,0, 255);
             vertIndex++;
         }

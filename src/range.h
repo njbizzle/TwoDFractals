@@ -141,7 +141,7 @@ sf::Vector2f clampVector2(sf::Vector2f vec, rangeTwoD a)
     return vec;
 }
 
-Eigen::Matrix3f transformToMatrix3f(rangeTwoD i, rangeTwoD f)
+Eigen::Matrix3f I(rangeTwoD i, rangeTwoD f)
 {
     // took a lot of thinking but im proud of this
 

@@ -19,7 +19,7 @@ bool checkOverlap(std::vector<float> stableValues, float x, float tolerance)
     return false;
 }
 
-inline std::vector<float> getStableValues(float r, range output, int maxIterations, int maxSplits)
+std::vector<float> logisticMapStableValues(float r, range output, int maxIterations, int maxSplits)
 {
     float x = 0.5;
     for (int i = 0; i < maxIterations; i++)
@@ -59,6 +59,11 @@ inline std::vector<float> getStableValues(float r, range output, int maxIteratio
         stableValues.push_back(x);
     }
     return stableValues;
+}
+
+int logisticMapEstimVerticies(float r, range output, int maxIterations, int maxSplits)
+{
+    return logisticMapStableValues(r, output, maxIterations, maxSplits).size();
 }
 
 
