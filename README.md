@@ -34,4 +34,5 @@ The title implies a project that's more general than just the logistic map, and 
 # Screenshots
 
 ![](screenshots/1.5.png)
+
 ![](screenshots/10.png)
