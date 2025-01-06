@@ -1,3 +1,8 @@
+---
+geometry: margin=3cm
+colorlinks: true
+---
+
 # Fractal Project (The Logistic Map)
 
 #### A program that uses SFML to make a graphing tool, which is used visualize the logistic map.
