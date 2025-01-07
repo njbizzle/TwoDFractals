@@ -1,30 +1,41 @@
-# Fractal Project (The Logistic Map)
+# The Logistic Map and Graphing Software
 
 #### A program that uses SFML to make a graphing tool, which is used to visualize the logistic map.
 
 ## Overview
 
-I stumbled across the logistic map and James Gleick's _Chaos_ online, and the first time I saw the math behind the logistic map, I knew I had to try and recreate it. I found the ties that the logistic map had to other fractals and chaotic systems really interesting, and I knew I wanted to further explore the pattern. For this project I knew I'd need to make use of a graphics framework, and since I was trying to challenge myself to make use of C++ more, I decided to go with SFML (Simple Fast Multimedia Library), which is relatively easy to use compared to other options. Most of the challenge in this project ended up being in creating a space to display the points I wanted to, managing pixel spaces (integer coordinates that represent a pixel), world spaces (the actual ticks on the gridlines), rendering only what I need, and the gridlines.
+I stumbled across the logistic map and James Gleick's _Chaos_ online. The first time I saw the deceiving simplicity of the rules that dictate the logistic map, I knew I’d want to implement a visual representation of this concept. I would need to make use of a graphics framework, so I decided to go with Simple Fast Multimedia Library (SFML), which was a relatively easy option that allowed me to continue to grow my C++ skills. After finishing a basic visual, I continued to expand the graphing capabilities by allowing the user to pan and zoom, add fading gridlines, and add number ticks. 
 
 ## Tools Used
 
-I knew that there were many tools that would simplify the project, but that wasn't really the goal. I used SFML, but made an attempt to use my own implementations of its features wherever I could.
+Within SFML I made an effort to reimplement as much as I could, but not everything was feasible to reimplement. Below is a list of the SFML features that I made use of.
 
-From SFML I made use of:
-- Windowing
-- Rendering points in pixel space
-- Rendering lines in pixel space given 2 points
-- Rendering fonts
-- Keyboard and trackpad input
+Windowing
+Rendering points in pixel space
+Rendering lines in pixel space given two points
+Rendering fonts
+Keyboard and trackpad input
 
-I wanted to implement features like transforms and cameras myself.
-I also made use of the Eigen library for linear algebra.
 
-The project was made in C++, making use of the GCC compiler, and the CLion IDE.
+Similar to my ASCII project, I made use of the following.
 
-## The Future of the Project
+The Eigen library for linear algebra
+The C++ language
+The GCC compiler for C++
+CMake as a build tool
+CLion as a development environment
+Git/GitHub for version control
 
-The title implies a project that's more general than just the logistic map, and I do have plans to expand it, but I don't think I'll continue from this repository. I started running into performance issues, which I'd need to address by learning more involved techniques for displaying things. Feeding SFML 10,000 points and letting it figure it out isn't super fast. I'd need to do a lot more learning in a framework like SFML and start to mold the project to whatever framework I'm using. Longer term I'd like to be building more projects inside of Vulkan, so if I were to dedicate the time to learning a framework, that's what I'd prefer to be using. Once I get more comfortable within Vulkan this project might see a much faster sequel with some better fractal renders.
+## Going from Graph Space to Pixel Space with Linear Algebra, the transformToMatrix3f function
+My favorite aspect of this project was managing the different coordinate spaces. I wanted to borrow from my previous projects where transformations between coordinate spaces were represented as matrices. In this project, the setup is that the graph is described with upper and lower bounds on the X and Y axis in both pixel space and graph space. This ```transformToMatrix3f``` function takes the rectangular 2D input space and rectangular 2D output space, and returns a 3x3 matrix which transforms a homogeneous coordinate in the input space to a corresponding point in the output space.
+
+In summary, the function returns a matrix that allows me to quickly find where a coordinate on the graph would land as a pixel in the window. This was a very fun puzzle to work through and challenged how well I was able to think about matrices and homogeneous coordinates.
+
+## Current Problems and the Future of the Project
+
+With the title of the repository implying such a broad scope, it’s not hard to imagine that I have other ideas. I’d like to implement more fractal-like patterns and allow the user to swap between visuals.
+
+However, when I tried to execute on these ideas I ran into performance issues. These were difficult to address without taking advantage of more advanced SFML specific rendering techniques. I decided that longer-term I'd like to switch to learning and building more projects using Vulkan. Once I get more comfortable with Vulkan, I’m hoping this project will get a much more performant sequel.
 
 # Screenshots
 
